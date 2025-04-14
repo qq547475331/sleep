@@ -1,0 +1,37 @@
+<variant
+    name="release"
+    package="com.example.android"
+    minSdkVersion="21"
+    targetSdkVersion="35"
+    shrinking="true"
+    mergedManifest="/Users/guichen/sleep_app/android/build/app/intermediates/merged_manifest/release/processReleaseMainManifest/AndroidManifest.xml"
+    proguardFiles="/Users/guichen/sleep_app/android/build/app/intermediates/default_proguard_files/global/proguard-android-optimize.txt-8.7.0:/usr/local/Caskroom/flutter/3.29.2/flutter/packages/flutter_tools/gradle/flutter_proguard_rules.pro:proguard-rules.pro"
+    partialResultsDir="/Users/guichen/sleep_app/android/build/app/intermediates/lint_vital_partial_results/release/lintVitalAnalyzeRelease/out"
+    desugaredMethodsFiles="/Users/guichen/.gradle/caches/8.10.2/transforms/58b2fa97deb6620e81e8f2146e68c814/transformed/D8BackportedDesugaredMethods.txt">
+  <buildFeatures
+      namespacing="REQUIRED"/>
+  <sourceProviders>
+    <sourceProvider
+        manifests="src/main/AndroidManifest.xml"
+        javaDirectories="src/main/java:src/release/java:src/main/kotlin:src/release/kotlin"
+        resDirectories="src/main/res:src/release/res"
+        assetsDirectories="src/main/assets:src/release/assets"/>
+  </sourceProviders>
+  <testSourceProviders>
+  </testSourceProviders>
+  <testFixturesSourceProviders>
+  </testFixturesSourceProviders>
+  <manifestPlaceholders>
+    <placeholder
+        name="applicationName"
+        value="android.app.Application" />
+  </manifestPlaceholders>
+  <artifact
+      classOutputs="/Users/guichen/sleep_app/android/build/app/intermediates/javac/release/compileReleaseJavaWithJavac/classes:/Users/guichen/sleep_app/android/build/app/tmp/kotlin-classes/release:/Users/guichen/sleep_app/android/build/app/kotlinToolingMetadata:/Users/guichen/sleep_app/android/build/app/intermediates/compile_and_runtime_not_namespaced_r_class_jar/release/processReleaseResources/R.jar"
+      type="MAIN"
+      applicationId="com.example.android"
+      generatedSourceFolders="/Users/guichen/sleep_app/android/build/app/generated/ap_generated_sources/release/out"
+      generatedResourceFolders="/Users/guichen/sleep_app/android/build/app/generated/res/resValues/release"
+      desugaredMethodsFiles="/Users/guichen/.gradle/caches/8.10.2/transforms/58b2fa97deb6620e81e8f2146e68c814/transformed/D8BackportedDesugaredMethods.txt">
+  </artifact>
+</variant>

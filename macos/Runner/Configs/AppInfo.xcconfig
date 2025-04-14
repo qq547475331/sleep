@@ -1,0 +1,24 @@
+// Application-level settings for the Runner target.
+//
+// This file controls settings that apply to the entire application.
+// Individual targets may define their own settings.
+
+#include "../../Pods/Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"
+#include "../../Pods/Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig"
+#include "../../Pods/Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig"
+
+// The application's name. By default this is also the title of the Flutter window.
+PRODUCT_NAME = sleep_app
+
+// The application's bundle identifier
+PRODUCT_BUNDLE_IDENTIFIER = com.example.sleepApp
+
+// The copyright displayed in application information
+PRODUCT_COPYRIGHT = Copyright © 2025 com.example. All rights reserved.
+
+// The application's deployment target.
+MACOSX_DEPLOYMENT_TARGET=10.15
+
+// The application's version number.
+FLUTTER_BUILD_NAME=1.0.0
+FLUTTER_BUILD_NUMBER=1
