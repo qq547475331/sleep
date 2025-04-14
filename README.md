@@ -1,16 +1,122 @@
-# sleep_app
+# 睡梦时光 - 睡眠追踪应用
 
-A new Flutter project.
+一款基于Flutter开发的睡眠记录和分析应用，帮助用户追踪睡眠模式、改善睡眠质量、提供数据分析和统计。
 
-## Getting Started
+## 应用架构
 
-This project is a starting point for a Flutter application.
+### 核心技术栈
+- **框架**: Flutter (跨平台移动应用框架)
+- **语言**: Dart
+- **数据库**: SQLite (通过sqflite包实现)
+- **状态管理**: Provider + setState
+- **后台服务**: flutter_background_service
+- **本地存储**: shared_preferences
+- **音频处理**: record + audio_session
 
-A few resources to get you started if this is your first Flutter project:
+### 项目结构
+```
+lib/
+├── data/
+│   └── sleep_slogans.dart         # 睡眠相关语录和提示
+├── models/
+│   └── sleep_record.dart          # 睡眠记录数据模型
+├── screens/
+│   ├── home_screen.dart           # 主页面
+│   ├── sleep_recording_screen.dart # 睡眠记录页面
+│   ├── sleep_analysis_screen.dart  # 睡眠分析页面
+│   ├── sleep_statistics_screen.dart # 睡眠统计页面
+│   ├── sleep_history_screen.dart   # 睡眠历史页面
+│   └── sleep_record_detail_screen.dart # 睡眠记录详情页面
+├── services/
+│   ├── background_service.dart    # 后台服务管理
+│   ├── database_helper.dart       # 数据库操作
+│   └── recording_service.dart     # 录音服务
+└── main.dart                      # 应用入口
+```
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 核心功能
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### 1. 睡眠记录
+- **开始/结束记录**: 用户可以在睡前点击"开始记录"按钮，醒来后点击"结束记录"按钮来追踪睡眠时间
+- **持久化状态**: 应用在后台或关闭后仍能保持记录状态
+- **睡眠时长计算**: 自动计算睡眠持续时间
+- **睡眠质量评估**: 基于睡眠时长进行初步的睡眠质量评估
+
+### 2. 睡眠统计与分析
+- **睡眠历史记录**: 查看所有历史睡眠数据
+- **睡眠数据统计**: 支持按周、月、年维度统计平均睡眠时长
+- **睡眠图表分析**: 可视化展示睡眠时长和质量趋势
+- **睡眠详情记录**: 查看每次睡眠的详细信息和数据
+
+### 3. 后台运行与保活机制
+- **后台服务**: 使用flutter_background_service确保应用在后台持续运行
+- **保活录音**: 通过低资源消耗的录音服务保持应用活跃
+- **状态持久化**: 利用shared_preferences在应用重启后恢复睡眠记录状态
+
+### 4. 睡眠相关内容推送
+- **睡眠语录**: 展示睡眠相关的激励语录和提示
+- **分类内容**: 提供睡眠科学知识、助眠技巧等分类内容
+- **动态更新**: 定时刷新展示内容，提供新鲜的睡眠建议
+
+## 技术实现细节
+
+### 数据持久化
+- 使用SQLite数据库存储睡眠记录，通过DatabaseHelper类实现CRUD操作
+- 使用SleepRecord模型类表示睡眠数据，包含开始时间、结束时间、持续时间、质量评估等字段
+- 实现了数据库版本迁移机制，确保应用更新时数据完整性
+
+### 后台保活机制
+- 实现了两层保活机制:
+  1. 系统级别: 通过flutter_background_service注册前台服务
+  2. 应用级别: 通过RecordingService实现低资源消耗的录音保活
+- 为防止过度消耗资源，录音文件每两分钟重启一次，并在结束后自动清理
+- 通过iOS Audio Session配置，确保iOS平台后台运行能力
+
+### UI设计
+- 采用深色主题设计，适合夜间使用
+- 使用Material Design 3组件，实现现代化UI界面
+- 实现了流畅的动画过渡和交互效果
+- 自适应不同屏幕大小和比例的布局
+
+### 数据分析与可视化
+- 实现多种统计维度: 日、周、月、年
+- 使用图表展示睡眠时长趋势和睡眠质量分布
+- 计算睡眠效率和统计数据，提供直观的睡眠质量评估
+
+### 应用状态管理
+- 使用Flutter状态管理确保UI与数据同步
+- 实现了完整的生命周期管理，确保应用在前后台切换时正确处理状态
+- 错误处理机制，防止异常导致应用崩溃
+
+## 安装与使用
+
+### 安装要求
+- iOS 11.0+ / Android 6.0+
+- Flutter 3.0.0+ (开发环境)
+- Dart 2.17.0+ (开发环境)
+
+### 构建应用
+```bash
+# 获取依赖
+flutter pub get
+
+# 运行应用
+flutter run
+
+# 构建发布版本
+flutter build ios  # 构建iOS版本
+flutter build apk  # 构建Android版本
+```
+
+### 权限需求
+- 录音权限: 用于后台保活机制
+- 通知权限: 用于显示前台服务通知
+- 后台运行权限: 用于保持睡眠记录的连续性
+
+## 未来计划
+
+- [ ] 添加更详细的睡眠质量评估算法
+- [ ] 实现云同步功能，支持多设备数据备份
+- [ ] 加入智能闹钟功能，基于睡眠周期唤醒用户
+- [ ] 支持可穿戴设备集成，获取更准确的睡眠数据
+- [ ] 增加社区功能，让用户分享睡眠经验和技巧
